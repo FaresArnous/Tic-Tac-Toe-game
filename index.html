@@ -14,6 +14,7 @@
     <link rel="stylesheet" href="style.css" />
     <link rel="stylesheet" href="overlays.css" />
     <link rel="stylesheet" href="configuration.css" />
+    <link rel="stylesheet" href="game.css" />
     <script src="app.js" defer></script>
   </head>
   <body>
@@ -59,12 +60,12 @@
       </section>
 
       <section id="active-game">
-        <article>
-          <h3>You won!, <span id="winner-name">PLAYER NAME</span></h3>
+        <article id="game-over">
+          <h2>You won!, <span id="winner-name">PLAYER NAME</span></h2>
           <p>Click "Start New Game" above, to start a new game!</p>
         </article>
         <p>It's your turn <span id="active-player-name">PLAYER NAME</span>!</p>
-        <ol id="tic-tac-toe-board">
+        <ol id="game-board">
           <li></li>
           <li></li>
           <li></li>
