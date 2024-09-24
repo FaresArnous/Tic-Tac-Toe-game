@@ -12,18 +12,21 @@
       rel="stylesheet" />
 
     <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="overlays.css" />
+    <link rel="stylesheet" href="configuration.css" />
     <script src="app.js" defer></script>
   </head>
   <body>
+    <div id="backdrop"></div>
     <header id="main-header">
       <h1>Play Tic, Tac, Toe</h1>
       <p>Built with HTML, CSS, and JavaScript</p>
     </header>
     <main>
-      <aside>
+      <aside class="modal" id="config-overlay">
         <h2>Enter your name</h2>
         <form>
-          <div>
+          <div class="form-control">
             <label for="Playername">Player Name</label>
             <input type="text" name="Playername" id="Playername" />
           </div>
@@ -61,7 +64,7 @@
           <p>Click "Start New Game" above, to start a new game!</p>
         </article>
         <p>It's your turn <span id="active-player-name">PLAYER NAME</span>!</p>
-        <ol>
+        <ol id="tic-tac-toe-board">
           <li></li>
           <li></li>
           <li></li>
