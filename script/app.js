@@ -1,3 +1,16 @@
+let editedPlayer = 0;
+
+const player = [
+  {
+    name: "",
+    Symbol: "X",
+  },
+  {
+    name: "",
+    Symbol: "O",
+  },
+];
+
 const openModel = document.getElementById("config-overlay");
 const backDrop = document.getElementById("backdrop");
 const formElement = document.querySelector("form");

@@ -1,4 +1,5 @@
-function openPlayerconfig() {
+function openPlayerconfig(event) {
+  editedPlayer = +event.target.dataset.playerid;
   openModel.style.display = "block";
   backDrop.style.display = "block";
 }
@@ -20,4 +21,17 @@ function savePlayerConfig(event) {
     errorOutput.textContent = "Pleas enter a valid name!";
     return;
   }
+
+  const updatedPlayerDataElement = document.getElementById(
+    "player-" + editedPlayer + "-data"
+  );
+  updatedPlayerDataElement.children[1].textContent = enteredPlayerName;
+
+  // if (editedPlayer === 1) {
+  //   player[0].name = enteredPlayerName;
+  // } else {
+  //   player[1].name = enteredPlayerName;
+  // }
+
+  player[editedPlayer - 1].name = enteredPlayerName;
 }
