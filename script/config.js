@@ -9,6 +9,7 @@ function closePlayerconfig() {
   backDrop.style.display = "none";
   formElement.firstElementChild.classList.remove("error");
   errorOutput.textContent = "";
+  formElement.firstElementChild.lastElementChild.value = "";
 }
 
 function savePlayerConfig(event) {
@@ -31,7 +32,9 @@ function savePlayerConfig(event) {
   //   player[0].name = enteredPlayerName;
   // } else {
   //   player[1].name = enteredPlayerName;
-  // }
+  // }other way to do so
 
   player[editedPlayer - 1].name = enteredPlayerName;
+
+  closePlayerconfig();
 }
