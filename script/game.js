@@ -2,17 +2,22 @@ function resetGameStatus() {
   activePlayer = 0;
   currentRound = 1;
   gameIsOver = false;
+  if (!gameOver) {
+    return;
+  }
   gameOver.firstElementChild.innerHTML =
     'You won!, <span id="winner-name">PLAYER NAME</span>';
-  gameOverElement.style.display = "none";
-
+  gameOver.style.display = "none";
   let gameBoardIndex = 0;
   for (let i = 0; i < 3; i++) {
     for (let j = 0; j < 3; j++) {
       gameData[i][j] = 0;
-      const gameboardItem = gameBoardElements.children[gameBoardIndex];
-      gameboardItem.textContent = "";
-      gameboardItem.classList.remove("disabled");
+      const gameBoardItem = gameBoardElements[gameBoardIndex];
+      if (!gameBoardItem) {
+        return;
+      }
+      gameBoardItem.textContent = "";
+      gameBoardItem.classList.remove("disabled");
       gameBoardIndex++;
     }
   }
@@ -29,8 +34,9 @@ function startGame() {
     return;
   }
 
-  activePlayerNameElement.textContent = player[activePlayer].name;
+  resetGameStatus();
 
+  activePlayerNameElement.textContent = player[activePlayer].name;
   boardArea.style.display = "block";
 }
 
