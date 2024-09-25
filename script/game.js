@@ -1,9 +1,11 @@
 function resetGameStatus() {
   activePlayer = 0;
   currentRound = 1;
+  gameIsOver = false;
   gameOver.firstElementChild.innerHTML =
     'You won!, <span id="winner-name">PLAYER NAME</span>';
   gameOverElement.style.display = "none";
+
   let gameBoardIndex = 0;
   for (let i = 0; i < 3; i++) {
     for (let j = 0; j < 3; j++) {
@@ -23,7 +25,6 @@ function startGame() {
     setTimeout(function () {
       toastMsg.style.display = "none";
     }, 4000);
-    resetGameStatus();
 
     return;
   }
@@ -43,6 +44,9 @@ function switchPlayer() {
 }
 
 function selectGameField(event) {
+  if (gameIsOver) {
+    return;
+  }
   const selectedField = event.target;
   const selectedColumn = selectedField.dataset.col - 1;
   const selectedCRow = selectedField.dataset.row - 1;
@@ -108,6 +112,7 @@ function checkForGameOver() {
 }
 
 function endGame(winnerId) {
+  gameIsOver = true;
   gameOver.style.display = "block";
 
   if (winnerId > 0) {
