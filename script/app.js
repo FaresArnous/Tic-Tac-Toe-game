@@ -27,6 +27,7 @@ const toastMsg = document.getElementById("toast-msg");
 const boardArea = document.getElementById("active-game");
 const gameBoardElements = document.querySelectorAll("#game-board li");
 const activePlayerNameElement = document.getElementById("active-player-name");
+const gameOver = document.getElementById("game-over");
 
 const editPlayer1Btn = document.getElementById("edit-player-1-btn");
 const editPlayer2Btn = document.getElementById("edit-player-2-btn");

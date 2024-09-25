@@ -1,3 +1,21 @@
+function resetGameStatus() {
+  activePlayer = 0;
+  currentRound = 1;
+  gameOver.firstElementChild.innerHTML =
+    'You won!, <span id="winner-name">PLAYER NAME</span>';
+  gameOverElement.style.display = "none";
+  let gameBoardIndex = 0;
+  for (let i = 0; i < 3; i++) {
+    for (let j = 0; j < 3; j++) {
+      gameData[i][j] = 0;
+      const gameboardItem = gameBoardElements.children[gameBoardIndex];
+      gameboardItem.textContent = "";
+      gameboardItem.classList.remove("disabled");
+      gameBoardIndex++;
+    }
+  }
+}
+
 function startGame() {
   if (player[0].name === "" || player[1].name === "") {
     toastMsg.style.display = "block";
@@ -5,9 +23,11 @@ function startGame() {
     setTimeout(function () {
       toastMsg.style.display = "none";
     }, 4000);
+    resetGameStatus();
 
     return;
   }
+
   activePlayerNameElement.textContent = player[activePlayer].name;
 
   boardArea.style.display = "block";
@@ -28,7 +48,7 @@ function selectGameField(event) {
   const selectedCRow = selectedField.dataset.row - 1;
 
   if (gameData[selectedCRow][selectedColumn] > 0) {
-    alert("Please select an empty feild!!");
+    alert("Please select an empty field!!");
     return;
   }
 
@@ -38,7 +58,10 @@ function selectGameField(event) {
   gameData[selectedCRow][selectedColumn] = activePlayer + 1;
 
   const winnerId = checkForGameOver();
-  console.log(winnerId);
+  if (winnerId !== 0) {
+    endGame(winnerId);
+  }
+
   currentRound++;
   switchPlayer();
 }
@@ -82,4 +105,15 @@ function checkForGameOver() {
     return -1;
   }
   return 0;
+}
+
+function endGame(winnerId) {
+  gameOver.style.display = "block";
+
+  if (winnerId > 0) {
+    const winnerName = player[winnerId - 1].name;
+    gameOver.firstElementChild.firstElementChild.textContent = winnerName;
+  } else {
+    gameOver.firstElementChild.textContent = "It's a draw";
+  }
 }
